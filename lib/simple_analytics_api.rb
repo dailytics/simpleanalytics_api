@@ -10,5 +10,6 @@ module SimpleAnalyticsApi
   autoload :Error, "simple_analytics_api/error"
 
   autoload :Resource, "simple_analytics_api/resource"
+  autoload :Website, "simple_analytics_api/website"
   autoload :Object, "simple_analytics_api/object"
 end
