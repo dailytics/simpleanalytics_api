@@ -5,7 +5,7 @@ module SimpleAnalyticsApi
 
     attr_accessor :api_key, :user_id, :domain
 
-    def initialize(api_key: nil, user_id: nil, domain:)
+    def initialize(api_key: nil, user_id: nil, domain: nil)
       @api_key = api_key.to_s
       @user_id = user_id.to_s
       @domain  = domain.to_s
@@ -13,6 +13,10 @@ module SimpleAnalyticsApi
 
     def valid?
       run.ok rescue false
+    end
+
+    def websites 
+      Website.new(client: self).run
     end
 
     def run(fields: [], filters: {})

@@ -10,7 +10,6 @@ module SimpleAnalyticsApi
       @fields  = fields
       @filters = filters
       @domain  = domain || client.domain
-      @errors  = []
       @filters[:version] = 5 unless @filters[:version]
       @fields = [:pageviews] unless @fields.any?
     end
