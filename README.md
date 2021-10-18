@@ -25,9 +25,27 @@ client.run(
   fields: %w(pageviews visitors pages), 
   filters: {
     start: '2021-01-01 00:00', 
-    end: '2021-01-31 23:59'
+    end: '2021-01-05 23:59'
   }
-)
+).pages
+=> [#<OpenStruct value="/", pageviews=36, visitors=28>, #<OpenStruct value="/may-2020-all-stripe-data-explained-and-we-just-hit-6000-usd-mrr", pageviews=14, visitors=2>, #<OpenStruct value="/how-we-hit-our-30k-annual-recurring-revenue-milestone", pageviews=5, visitors=4>, #<OpenStruct value="/why-we-moved-our-servers-to-iceland", pageviews=5, visitors=2>, #<OpenStruct value="/april-2020-we-hit-400-paying-customers", pageviews=4, visitors=3>, #<OpenStruct value="/practical-privacy-tips-for-your-business", pageviews=2, visitors=2>]
+```
+The `run` command will also include some other helpful information, like this:
+```rb
+=> #<SimpleAnalyticsApi::Object ok=true, docs="https://docs.simpleanalytics.com/api", info="false", hostname="blog.simpleanalytics.com", url="https://blog.simpleanalytics.com", path="*", start="2021-01-01T00:00:00.000Z", end="2021-01-06T23:59:59.999Z", version=5, timezone="UTC", pageviews=66, visitors=41, pages=...the-content-that-you-see-above..., generated_in_ms=398>
+```
+
+You can also include a `debug` parameter if you want to see the final URL that is going
+to be called, like this:
+```rb
+client.run(
+  fields: %w(pageviews visitors pages), 
+  filters: {
+    start: '2021-01-01 00:00', 
+    end: '2021-01-05 23:59'
+  },
+  debug: true
+).pages
 ```
 
 ## Development
