@@ -19,8 +19,8 @@ module SimpleAnalyticsApi
       Website.new(client: self).run
     end
 
-    def run(fields: [], filters: {})
-      Resource.new(client: self, fields: fields, filters: filters).run
+    def run(fields: [], filters: {}, debug: false)
+      Resource.new(client: self, fields: fields, filters: filters, debug: debug).run
     end
   end
 end

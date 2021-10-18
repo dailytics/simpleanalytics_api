@@ -3,15 +3,18 @@ module SimpleAnalyticsApi
 
     BASE_URL = 'https://simpleanalytics.com'
 
-    attr_accessor :client, :fields, :filters, :domain
+    attr_accessor :client, :fields, :filters, :domain, :debug
 
-    def initialize(client:, domain: nil, fields: [], filters: {})
+    def initialize(client:, domain: nil, fields: [], filters: {}, debug: false)
       @client  = client
       @fields  = fields
       @filters = filters
       @domain  = domain || client.domain
+      @debug   = debug
       @filters[:version] = 5 unless @filters[:version]
+      @filters[:info] = false unless @debug
       @fields = [:pageviews] unless @fields.any?
+      
     end
 
     def fields_and_filters
@@ -32,6 +35,7 @@ module SimpleAnalyticsApi
     end
 
     def run
+      puts "[SimpleAnalyticsAPI] #{url}" if debug
       uri = URI.parse url
       req = Net::HTTP::Get.new(uri.request_uri)
       req.add_field('Content-Type', 'application/json')
